@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       score: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
     },
     { underscored: true },

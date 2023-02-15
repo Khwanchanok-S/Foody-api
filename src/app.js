@@ -8,8 +8,12 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
 const authRoute = require('./routes/auth-route');
+const userRoute = require('./routes/user-route');
+const reviewRoute = require('./routes/review-route');
+const restaurantRoute = require('./routes/restaurant-route');
 const notFoundMiddleware = require('./middlewares/not-found');
 const errorMiddleware = require('./middlewares/error');
+const authenticateMiddleware = require('./middlewares/authenticate');
 
 const app = express();
 
@@ -26,7 +30,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/auth', authRoute);
-
+app.use('/users', authenticateMiddleware, userRoute);
+app.use('/reviews', authenticateMiddleware, reviewRoute);
+app.use('/restaurants', authenticateMiddleware, restaurantRoute);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 
