@@ -18,12 +18,23 @@ exports.createRestaurant = async (req, res, next) => {
     next(err);
   }
 };
-exports.getAllRestaurant = async (req, res, next) => {
+exports.getRestaurantById = async (req, res, next) => {
+  const { restaurantId } = req.params;
+  try {
+    const restaurant = await Restaurant.findOne({
+      where: {
+        id: restaurantId,
+      },
+    });
+    res.status(201).json({ restaurant });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAllRestaurants = async (req, res, next) => {
   try {
     const restaurant = await Restaurant.findAll({
-      where: {
-        restaurantId: req.params.restaurantId,
-      },
       include: [{ mobile: Restaurant }],
     });
     res.status(201).json({ restaurant });

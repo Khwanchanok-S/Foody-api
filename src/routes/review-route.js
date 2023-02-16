@@ -1,8 +1,8 @@
 const express = require('express');
 const reviewController = require('../controllers/review-controller');
-const { route } = require('./auth-route');
 const router = express.Router();
 
 router.post('/:restaurantId', reviewController.createReview);
 router.get('/:restaurantId', reviewController.getAllReview);
+router.delete('/:reviewId', reviewController.deleteReview);
 module.exports = router;
