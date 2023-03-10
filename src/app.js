@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+// const { sequelize } = require('./models');
+// sequelize.sync({ force: true });
+
 const express = require('express');
 const cors = require('cors');
 const chalk = require('chalk');
@@ -32,7 +35,7 @@ app.use(express.json());
 app.use('/auth', authRoute);
 app.use('/users', authenticateMiddleware, userRoute);
 app.use('/reviews', authenticateMiddleware, reviewRoute);
-app.use('/restaurants', authenticateMiddleware, restaurantRoute);
+app.use('/restaurants', restaurantRoute);
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);
 

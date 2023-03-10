@@ -46,6 +46,14 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
     });
+    Restaurant.hasMany(db.Image, {
+      foreignKey: {
+        name: 'restaurantId',
+        allowNull: false,
+      },
+      onDelete: 'RESTRICT',
+    });
+
     Restaurant.belongsTo(db.Category, {
       foreignKey: {
         name: 'categoryId',

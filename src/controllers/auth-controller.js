@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const { User } = require('../models');
-const { createError } = require('../utils/create-error');
+const createError = require('../utils/create-error');
 
 exports.register = async (req, res, next) => {
   try {
