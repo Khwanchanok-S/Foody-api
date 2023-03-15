@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'categoryId',
         allowNull: false,
       },
-      onDelete: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
     });
   };
   return category;

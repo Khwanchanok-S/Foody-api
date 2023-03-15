@@ -2,20 +2,24 @@ module.exports = (sequelize, DataTypes) => {
   const Restaurant = sequelize.define(
     'Restaurant',
     {
-      Name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
-        valisate: {
+        validate: {
           notEmpty: true,
         },
       },
-      Location: {
+      location: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
 
       mobile: {
         type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
         validate: {
           is: /^[0-9]{10}$/,
@@ -24,8 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       information: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notEmpty: true,
+        },
       },
-      profileImage: DataTypes.STRING,
+      profileImage: { type: DataTypes.STRING, allowNull: false },
     },
     {
       underscored: true,
@@ -37,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'restaurantId',
         allowNull: false,
       },
-      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     });
     Restaurant.hasMany(db.Reserve, {
       foreignKey: {
@@ -46,20 +54,21 @@ module.exports = (sequelize, DataTypes) => {
       },
       onDelete: 'RESTRICT',
     });
-    Restaurant.hasMany(db.Image, {
-      foreignKey: {
-        name: 'restaurantId',
-        allowNull: false,
-      },
-      onDelete: 'RESTRICT',
-    });
+    // Restaurant.hasMany(db.Image, {
+    //   foreignKey: {
+    //     name: 'restaurantId',
+    //     allowNull: false,
+    //   },
+    //   onDelete: 'CASCADE',
+    // });
 
     Restaurant.belongsTo(db.Category, {
       foreignKey: {
         name: 'categoryId',
         allowNull: false,
       },
-      onDelete: 'RESTRICT',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
     });
   };
 

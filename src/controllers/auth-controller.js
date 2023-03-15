@@ -46,6 +46,7 @@ exports.login = async (req, res, next) => {
     const accessToken = jwt.sign(
       {
         id: user.id,
+        role: user.role,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,

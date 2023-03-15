@@ -5,16 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
-        valisate: {
-          notEmpty: true,
-        },
       },
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-        },
       },
       email: {
         type: DataTypes.STRING,
@@ -35,6 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       profileImage: DataTypes.STRING,
+      role: DataTypes.STRING,
     },
     {
       underscored: true,

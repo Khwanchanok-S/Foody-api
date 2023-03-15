@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
         name: 'userId',
         allowNull: false,
       },
-      onDelete: 'RESTRICT',
+      onUpdate: 'CASCADE',
+      onDelete: 'CASCADE',
     });
 
     Review.belongsTo(db.Restaurant, {
